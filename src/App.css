@@ -1,0 +1,23 @@
+/* General styles for the application */
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fffae6; /* Matches the logo's background */
+  color: #333;
+}
+
+h1, h2, h3 {
+  color: #333;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.9rem;
+  }
+}

@@ -1,12 +1,61 @@
 import { useState } from "react";
-import "./Endpoints.css";
-
-// Import images explicitly
+import styled from "styled-components";
 import animalEndpoints from "../assets/images/animal-endpoints.png";
 import userEndpoints from "../assets/images/user-endpoints.png";
 import clinicEndpoints from "../assets/images/clinic-endpoints.png";
 import securityEndpoints from "../assets/images/security-endpoints.png";
 import adminEndpoints from "../assets/images/admin-endpoints.png";
+
+const EndpointsContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+`;
+
+const Title = styled.h1`
+  text-align: center;
+  margin-bottom: 20px;
+`;
+
+const Description = styled.p`
+  text-align: center;
+  margin-bottom: 40px;
+`;
+
+const Accordion = styled.div`
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+`;
+
+const AccordionItem = styled.div`
+  border-top: 1px solid #ddd;
+`;
+
+const AccordionTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+  background: #f9f9f9;
+
+  &:hover {
+    background: #f1f1f1;
+  }
+`;
+
+const AccordionContent = styled.div`
+  padding: 15px;
+  background: #fff;
+`;
+
+const StyledImage = styled.img`
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+`;
 
 function Endpoints() {
   const [activeSection, setActiveSection] = useState(null);
@@ -16,96 +65,81 @@ function Endpoints() {
   };
 
   return (
-    <div className="endpoints-container">
-      <h1>Endpoints</h1>
-      <p>
+    <EndpointsContainer>
+      <Title>Endpoints</Title>
+      <Description>
         Her er en oversigt over REST API endpoints, organiseret efter deres
         funktion.
-      </p>
+      </Description>
 
       {/* Accordion Sections */}
-      <div className="accordion">
+      <Accordion>
         {/* Animals Section */}
-        <div className="accordion-item">
-          <div
-            className="accordion-title"
-            onClick={() => toggleSection("animals")}
-          >
+        <AccordionItem>
+          <AccordionTitle onClick={() => toggleSection("animals")}>
             <h2>Animals</h2>
             <span>{activeSection === "animals" ? "-" : "+"}</span>
-          </div>
+          </AccordionTitle>
           {activeSection === "animals" && (
-            <div className="accordion-content">
-              <img src={animalEndpoints} alt="Animals Endpoints" />
-            </div>
+            <AccordionContent>
+              <StyledImage src={animalEndpoints} alt="Animals Endpoints" />
+            </AccordionContent>
           )}
-        </div>
+        </AccordionItem>
 
         {/* Users Section */}
-        <div className="accordion-item">
-          <div
-            className="accordion-title"
-            onClick={() => toggleSection("users")}
-          >
+        <AccordionItem>
+          <AccordionTitle onClick={() => toggleSection("users")}>
             <h2>Users</h2>
             <span>{activeSection === "users" ? "-" : "+"}</span>
-          </div>
+          </AccordionTitle>
           {activeSection === "users" && (
-            <div className="accordion-content">
-              <img src={userEndpoints} alt="Users Endpoints" />
-            </div>
+            <AccordionContent>
+              <StyledImage src={userEndpoints} alt="Users Endpoints" />
+            </AccordionContent>
           )}
-        </div>
+        </AccordionItem>
 
         {/* Clinics Section */}
-        <div className="accordion-item">
-          <div
-            className="accordion-title"
-            onClick={() => toggleSection("clinics")}
-          >
+        <AccordionItem>
+          <AccordionTitle onClick={() => toggleSection("clinics")}>
             <h2>Veterinary Clinics</h2>
             <span>{activeSection === "clinics" ? "-" : "+"}</span>
-          </div>
+          </AccordionTitle>
           {activeSection === "clinics" && (
-            <div className="accordion-content">
-              <img src={clinicEndpoints} alt="Veterinary Clinics Endpoints" />
-            </div>
+            <AccordionContent>
+              <StyledImage src={clinicEndpoints} alt="Veterinary Clinics Endpoints" />
+            </AccordionContent>
           )}
-        </div>
+        </AccordionItem>
 
         {/* Security Section */}
-        <div className="accordion-item">
-          <div
-            className="accordion-title"
-            onClick={() => toggleSection("security")}
-          >
+        <AccordionItem>
+          <AccordionTitle onClick={() => toggleSection("security")}>
             <h2>Security</h2>
             <span>{activeSection === "security" ? "-" : "+"}</span>
-          </div>
+          </AccordionTitle>
           {activeSection === "security" && (
-            <div className="accordion-content">
-              <img src={securityEndpoints} alt="Security Endpoints" />
-            </div>
+            <AccordionContent>
+              <StyledImage src={securityEndpoints} alt="Security Endpoints" />
+            </AccordionContent>
           )}
-        </div>
+        </AccordionItem>
 
         {/* Admin Section */}
-        <div className="accordion-item">
-          <div
-            className="accordion-title"
-            onClick={() => toggleSection("admin")}
-          >
+        <AccordionItem>
+          <AccordionTitle onClick={() => toggleSection("admin")}>
             <h2>Admin</h2>
             <span>{activeSection === "admin" ? "-" : "+"}</span>
-          </div>
+          </AccordionTitle>
           {activeSection === "admin" && (
-            <div className="accordion-content">
-              <img src={adminEndpoints} alt="Admin Endpoints" />
-            </div>
+            <AccordionContent>
+              <StyledImage src={adminEndpoints} alt="Admin Endpoints" />
+            </AccordionContent>
           )}
-        </div>
-      </div>
-    </div>
+        </AccordionItem>
+      </Accordion>
+    </EndpointsContainer>
   );
 }
 

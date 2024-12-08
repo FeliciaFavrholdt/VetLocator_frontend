@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import styled from "styled-components";
 
 const AboutContainer = styled.div`
@@ -24,7 +25,7 @@ const AboutDescription = styled.p`
 function About() {
   return (
     <AboutContainer>
-      <AboutTitle>Overview</AboutTitle>
+      <AboutTitle>Vison</AboutTitle>
       <AboutDescription>
         The VetLocator helps users find available veterinarians, particularly in
         emergency situations outside regular business hours. Users can also
@@ -33,6 +34,9 @@ function About() {
         integration into applications that aim to support pet owners in urgent
         situations.
       </AboutDescription>
+
+      <AboutTitle>Links</AboutTitle>
+      <NavLink to="">Link to API</NavLink>
     </AboutContainer>
   );
 }

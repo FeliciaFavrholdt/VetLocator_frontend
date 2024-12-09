@@ -4,6 +4,7 @@ import userEndpoints from "../assets/images/user-endpoints.png";
 import clinicEndpoints from "../assets/images/clinic-endpoints.png";
 import securityEndpoints from "../assets/images/security-endpoints.png";
 import adminEndpoints from "../assets/images/admin-endpoints.png";
+import Table from "../components/Table";
 
 function Endpoints() {
   const [activeSection, setActiveSection] = useState(null);
@@ -18,6 +19,7 @@ function Endpoints() {
       <p style={{ textAlign: "center", marginBottom: "40px" }}>
         This is an overview of REST API endpoints, organized by their function.
       </p>
+      <Table />
 
       <div style={{ border: "1px solid #ddd", borderRadius: "5px", overflow: "hidden" }}>
         {/* Animals Section */}

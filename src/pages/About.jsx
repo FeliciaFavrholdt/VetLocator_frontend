@@ -69,6 +69,9 @@ function About() {
           <StyledLink to="https://excalidraw.com/#json=bTRXTrkoO8VCoiFvQ7Rjc,rCiZAKz4IsXDDyRmdPoZuA">
            # API Mockup Ideas
           </StyledLink>
+          <StyledLink to="https://docs.google.com/document/d/16TA4V0pYATehiSXFYXXNyU-jIWjBD6XQeqAxySmnq5w/edit?usp=sharing">
+            # API Documentation (docs link)
+          </StyledLink>
         </LinksContainer>
       </Content>
     </Container>

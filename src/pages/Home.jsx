@@ -19,12 +19,12 @@ const ImagesContainer = styled.div`
 const StyledImage = styled.img`
   width: 100%; /* Responsive width */
   max-width: 300px; /* Images will not exceed 300px */
-  height: auto; /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */ 
 `;
 
 const Heading = styled.h1`
   font-size: 2.5rem;
-  color: #ff9505; /* Orange from the logo's details */
+  color: #ff9505; 
   margin-bottom: 10px;
 `;
 

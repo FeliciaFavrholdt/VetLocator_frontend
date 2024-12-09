@@ -20,14 +20,21 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px; /* Adds space between the paragraph and link */
+  gap: 20px;
 `;
 
 const Description = styled.p`
   font-size: 1.2em;
   text-align: justify;
   color: #555;
-  flex: 1; /* Allows the paragraph to grow as needed */
+  flex: 1;
+`;
+
+const LinksContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px; /* Adds space between links */
+  margin-top: 10px;
 `;
 
 const StyledLink = styled(NavLink)`
@@ -43,7 +50,7 @@ const StyledLink = styled(NavLink)`
 function About() {
   return (
     <Container>
-      <Title>Vision</Title>
+      <Title>Vision for the API</Title>
       <Content>
         <Description>
           The VetLocator helps users find available veterinarians, particularly
@@ -53,8 +60,16 @@ function About() {
           integration into applications that aim to support pet owners in urgent
           situations.
         </Description>
-        <StyledLink to="">Link to deployed API</StyledLink>
-        <StyledLink to="">Link to API repository</StyledLink>
+        <LinksContainer>
+          <StyledLink to=""># Deployed API</StyledLink>
+          <StyledLink to=""># Backend repository</StyledLink>
+          <StyledLink to="https://github.com/FeliciaFavrholdt/VetLocator_frontend">
+            # Frontend repository
+          </StyledLink>
+          <StyledLink to="https://excalidraw.com/#json=bTRXTrkoO8VCoiFvQ7Rjc,rCiZAKz4IsXDDyRmdPoZuA">
+           # API Mockup Ideas
+          </StyledLink>
+        </LinksContainer>
       </Content>
     </Container>
   );

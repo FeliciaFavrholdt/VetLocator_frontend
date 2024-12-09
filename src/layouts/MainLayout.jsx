@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/images/VetLocatorLogo.png";
 import Footer from "../components/Footer";

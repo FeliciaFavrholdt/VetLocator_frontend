@@ -8,12 +8,20 @@ const TableContainer = styled.div`
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+`;
+
+const SectionHeader = styled.h2`
+  font-size: 1.5rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #333;
 `;
 
 const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
+  margin-top: 10px;
 `;
 
 const TableHeader = styled.th`
@@ -35,38 +43,38 @@ const TableData = styled.td`
   border: 1px solid #ddd;
 `;
 
-function Table() {
-  const rows = [
-    { method: "GET", url: "/api/users", requestBody: "", response: "[user, user, …] (1)", error: "" },
-    { method: "GET", url: "/api/users/{id}", requestBody: "", response: "user (1)", error: "(e1)" },
-    { method: "POST", url: "/api/users", requestBody: "user(1) without id", response: "", error: "(e2)" },
-    { method: "UPDATE", url: "/api/users/{id}", requestBody: "user(1) without id", response: "user (1)", error: "" },
-  ];
-
+function Table({ sections }) {
   return (
     <TableContainer>
-      <StyledTable>
-        <thead>
-          <TableRow>
-            <TableHeader>Method</TableHeader>
-            <TableHeader>URL</TableHeader>
-            <TableHeader>Request Body (JSON)</TableHeader>
-            <TableHeader>Response (JSON)</TableHeader>
-            <TableHeader>Error (e)</TableHeader>
-          </TableRow>
-        </thead>
-        <tbody>
-          {rows.map((row, index) => (
-            <TableRow key={index}>
-              <TableData>{row.method}</TableData>
-              <TableData>{row.url}</TableData>
-              <TableData>{row.requestBody}</TableData>
-              <TableData>{row.response}</TableData>
-              <TableData>{row.error}</TableData>
-            </TableRow>
-          ))}
-        </tbody>
-      </StyledTable>
+      {sections.map((section, sectionIndex) => (
+        <div key={sectionIndex}>
+          <SectionHeader>{section.title}</SectionHeader>
+          <StyledTable>
+            <thead>
+              <TableRow>
+                <TableHeader>Method</TableHeader>
+                <TableHeader>URL</TableHeader>
+                <TableHeader>Request Body (JSON)</TableHeader>
+                <TableHeader>Response (JSON)</TableHeader>
+                <TableHeader>Error (e)</TableHeader>
+                <TableHeader>Notes</TableHeader>
+              </TableRow>
+            </thead>
+            <tbody>
+              {section.rows.map((row, rowIndex) => (
+                <TableRow key={rowIndex}>
+                  <TableData>{row.method}</TableData>
+                  <TableData>{row.url}</TableData>
+                  <TableData>{row.requestBody || "N/A"}</TableData>
+                  <TableData>{row.response || "N/A"}</TableData>
+                  <TableData>{row.error || "N/A"}</TableData>
+                  <TableData>{row.notes || "N/A"}</TableData>
+                </TableRow>
+              ))}
+            </tbody>
+          </StyledTable>
+        </div>
+      ))}
     </TableContainer>
   );
 }

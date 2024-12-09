@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const TableContainer = styled.div`
@@ -11,11 +12,23 @@ const TableContainer = styled.div`
   overflow-x: auto;
 `;
 
-const SectionHeader = styled.h2`
+const SectionHeader = styled.div`
   font-size: 1.5rem;
   margin-top: 30px;
   margin-bottom: 10px;
   color: #333;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #eaeaea;
+  }
 `;
 
 const StyledTable = styled.table`
@@ -44,35 +57,49 @@ const TableData = styled.td`
 `;
 
 function Table({ sections }) {
+  const [openSections, setOpenSections] = useState({});
+
+  const toggleSection = (title) => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [title]: !prev[title],
+    }));
+  };
+
   return (
     <TableContainer>
       {sections.map((section, sectionIndex) => (
         <div key={sectionIndex}>
-          <SectionHeader>{section.title}</SectionHeader>
-          <StyledTable>
-            <thead>
-              <TableRow>
-                <TableHeader>Method</TableHeader>
-                <TableHeader>URL</TableHeader>
-                <TableHeader>Request Body (JSON)</TableHeader>
-                <TableHeader>Response (JSON)</TableHeader>
-                <TableHeader>Error (e)</TableHeader>
-                <TableHeader>Notes</TableHeader>
-              </TableRow>
-            </thead>
-            <tbody>
-              {section.rows.map((row, rowIndex) => (
-                <TableRow key={rowIndex}>
-                  <TableData>{row.method}</TableData>
-                  <TableData>{row.url}</TableData>
-                  <TableData>{row.requestBody || "N/A"}</TableData>
-                  <TableData>{row.response || "N/A"}</TableData>
-                  <TableData>{row.error || "N/A"}</TableData>
-                  <TableData>{row.notes || "N/A"}</TableData>
+          <SectionHeader onClick={() => toggleSection(section.title)}>
+            <span>{section.title}</span>
+            <span>{openSections[section.title] ? "" : ""}</span>
+          </SectionHeader>
+          {openSections[section.title] && (
+            <StyledTable>
+              <thead>
+                <TableRow>
+                  <TableHeader>Method</TableHeader>
+                  <TableHeader>URL</TableHeader>
+                  <TableHeader>Request Body (JSON)</TableHeader>
+                  <TableHeader>Response (JSON)</TableHeader>
+                  <TableHeader>Error (e)</TableHeader>
+                  <TableHeader>Notes</TableHeader>
                 </TableRow>
-              ))}
-            </tbody>
-          </StyledTable>
+              </thead>
+              <tbody>
+                {section.rows.map((row, rowIndex) => (
+                  <TableRow key={rowIndex}>
+                    <TableData>{row.method}</TableData>
+                    <TableData>{row.url}</TableData>
+                    <TableData>{row.requestBody || "N/A"}</TableData>
+                    <TableData>{row.response || "N/A"}</TableData>
+                    <TableData>{row.error || "N/A"}</TableData>
+                    <TableData>{row.notes || "N/A"}</TableData>
+                  </TableRow>
+                ))}
+              </tbody>
+            </StyledTable>
+          )}
         </div>
       ))}
     </TableContainer>
